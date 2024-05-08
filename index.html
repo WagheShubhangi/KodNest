@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Page</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+    .container {
+        width: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+    .error {
+        color: red;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <br>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+        <br>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+    <div id="error-message" class="error"></div>
+</div>
+
+<script>
+    function validateForm() {
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var phone = document.getElementById('phone').value;
+        var errorMessage = document.getElementById('error-message');
+
+        // Check if email contains @ symbol
+        if (email.indexOf('@') === -1) {
+            errorMessage.innerHTML = 'Email must contain @ symbol.';
+            return false;
+        }
+
+        // Check if phone number has exactly 10 digits
+        if (phone.length !== 10) {
+            errorMessage.innerHTML = 'Phone number must have exactly 10 digits.';
+            return false;
+        }
+
+        // If all validations pass, return true
+        return true;
+    }
+    document.getElementById("loginForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+        
+        // Redirect to index.html
+        window.location.href = "index2.html";
+    });
+</script>
+</body>
+</html>
